@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar tarea</title>
+</head>
+<body>
+
+    <h1>Editar tarea</h1>
+
+    <form th:action="@{/tareas/guardar}" th:object="${tarea}" method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" th:field="*{titulo}">
+
+        <p th:if="${#fields.hasErrors('titulo')}"
+           th:errors="*{titulo}">
+        </p>
+
+        <br><br>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" th:field="*{descripcion}"></textarea>
+
+        <br><br>
+
+        <label for="completada">Completada:</label>
+        <input type="checkbox" id="completada" th:field="*{completada}">
+
+        <br><br>
+
+        <button type="submit">Guardar cambios</button>
+
+    </form>
+
+    <br>
+
+    <a th:href="@{/tareas}">Volver a tareas</a>
+
+</body>
+</html>

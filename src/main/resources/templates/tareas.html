@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis tareas</title>
+</head>
+<body>
+<p>
+    Usuario:
+    <strong sec:authentication="name"></strong>
+</p>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Cerrar sesión</button>
+</form>
+    <h1>Mi lista de tareas</h1>
+
+    <h2>Nueva tarea</h2>
+
+    <form th:action="@{/tareas/guardar}" th:object="${tarea}" method="post">
+
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" th:field="*{titulo}">
+
+        <!-- Mensaje de validación -->
+        <p th:if="${#fields.hasErrors('titulo')}"
+           th:errors="*{titulo}">
+        </p>
+
+        <br><br>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" th:field="*{descripcion}"></textarea>
+
+        <br><br>
+
+        <button type="submit">Guardar tarea</button>
+
+    </form>
+
+    <hr>
+
+    <h2>Tareas</h2>
+
+    <div th:if="${tareas.isEmpty()}">
+        <p>No tienes tareas todavía.</p>
+    </div>
+
+    <div th:each="tarea : ${tareas}">
+
+        <h3 th:text="${tarea.titulo}"></h3>
+
+        <p th:text="${tarea.descripcion}"></p>
+
+        <p>
+            Estado:
+            <span th:if="${tarea.completada}">Completada</span>
+            <span th:unless="${tarea.completada}">Pendiente</span>
+        </p>
+
+        <a th:href="@{/tareas/editar/{id}(id=${tarea.id})}">
+            Editar
+        </a>
+
+        <a th:href="@{/tareas/eliminar/{id}(id=${tarea.id})}">
+            Eliminar
+        </a>
+
+    </div>
+
+</body>
+</html>
