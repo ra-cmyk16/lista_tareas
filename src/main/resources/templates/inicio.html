@@ -3,12 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
+    <nav class="navbar">
+
+    <a class="logo" th:href="@{/}">
+        Lista de Tareas
+    </a>
+
+    <div class="enlaces">
+
+        <a th:href="@{/}">
+            Inicio
+        </a>
+
+        <a th:href="@{/tareas}">
+            Mis tareas
+        </a>
+
+    </div>
+
+</nav>
+
+   <div class="contenedor">
 
     <h1>Bienvenido a mi lista de tareas</h1>
 
-    <a th:href="@{/tareas}">Ir a mis tareas</a>
+    <div class="formulario">
+
+        <p>Administra tus tareas de forma sencilla.</p>
+
+        <a th:href="@{/tareas}">Ir a mis tareas</a>
+
+    </div>
+
+</div>
 
 </body>
 </html>

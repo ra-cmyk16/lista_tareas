@@ -5,6 +5,31 @@
     <title>Editar tarea</title>
 </head>
 <body>
+    <nav class="navbar">
+
+    <a class="logo" th:href="@{/}">
+        Lista de Tareas
+    </a>
+
+    <div class="enlaces">
+
+        <a th:href="@{/}">
+            Inicio
+        </a>
+
+        <a th:href="@{/tareas}">
+            Mis tareas
+        </a>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">
+                Cerrar sesión
+            </button>
+        </form>
+
+    </div>
+
+</nav>
 
     <h1>Editar tarea</h1>
 
